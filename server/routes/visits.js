@@ -13,4 +13,22 @@ router.get('/my-visits', isLoggedIn, (req, res, next) => {
   .catch(err => next(err))
 });
 
+router.post('/visits', isLoggedIn, (req, res, next) => {
+  Visit.create({
+    _user: req.user._id,
+    _streetArt: req.body.streetArt
+  })
+  .then(createdVisit => {
+    res.json(createdVisit);
+  })
+  .catch(err => next(err))
+});
+
+router.delete('/my-visits/:visitId', isLoggedIn, (req, res, next) => {
+  Visit.findByIdAndRemove(req.params.visitId)
+  .then(() => {
+    res.json({message: "visit was deleted"});
+  })
+  .catch(err => next(err))
+});
 module.exports = router;
