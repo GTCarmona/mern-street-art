@@ -51,6 +51,7 @@ require('./passport')(app)
 app.use('/api', require('./routes/index'))
 app.use('/api', require('./routes/auth'))
 app.use('/api/street-arts', require('./routes/street-arts.js')) // NEW LINE: take all the routes defined in './routes/street-arts' and prefix them by '/api/street-arts'
+app.use('/api', require('./routes/visits'))
 
 
 // For any routes that starts with "/api", catch 404 and forward to error handler
