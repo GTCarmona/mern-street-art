@@ -8,6 +8,8 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import api from '../api';
 import logo from '../logo.svg';
+import MainNavbar from '../MainNavbar';
+
 
 export default class App extends Component {
   constructor(props) {
@@ -24,6 +26,7 @@ export default class App extends Component {
   render() {
     return (
       <div className="App">
+      <MainNavbar />
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">MERN Boilerplate</h1>
