@@ -5,7 +5,7 @@ const { isLoggedIn } = require('../middlewares')
 const router = express.Router();
 
 // Route protected for logged in user
-router.get('/my-visits', isLoggedIn, (req, res, next) => {
+router.get('/visits', isLoggedIn, (req, res, next) => {
   Visit.find({_user: req.user._id}).populate('_streetArt')
   .then(responseVisit => {
     res.json(responseVisit);
@@ -24,11 +24,21 @@ router.post('/visits', isLoggedIn, (req, res, next) => {
   .catch(err => next(err))
 });
 
-router.delete('/my-visits/:visitId', isLoggedIn, (req, res, next) => {
-  Visit.findByIdAndRemove(req.params.visitId)
-  .then(() => {
-    res.json({message: "visit was deleted"});
-  })
-  .catch(err => next(err))
-});
+router.delete('/visits/:visitId', isLoggedIn, (req, res, next) => {
+  Visit.findById(req.params.visitId)
+  .then(visit => {
+    if(visit._user === req.user.id) {
+      Visit.findByIdAndRemove(req.params.visitId)
+    }
+    else {
+      res.json({message: "You are not allowed to do delete that"})
+  }})
+      .then(() => {
+        res.json({message: "visit was deleted"});
+      })
+      .catch(err => next(err))
+    })
+
+   
+
 module.exports = router;

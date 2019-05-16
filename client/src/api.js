@@ -76,13 +76,44 @@ export default {
   //     .then(res => res.data)
   //     .catch(errHandler)
   // },
-
-  getSecret() {
+  getStreetArts(){
     return service
-      .get('/secret')
-      .then(res => res.data)
-      .catch(errHandler)
+    .get("/street-arts")
+    .then(response => response.data)
+    .catch(errHandler)
   },
+  getVisits(){
+    return service
+    .get("/visits")
+    .then(response => response.data)
+    .catch(errHandler)
+  },
+  getStreetArt(streetArtId) {
+    return service
+    .get(`/street-arts/${streetArtId}`)
+    .then(response => response.data)
+    .catch(errHandler)
+  },
+  addStreetArt(body) {
+    return service
+    .post(body)
+    .then(response => response.data)
+    .catch(errHandler)
+  },
+
+  createVisit(body){
+    return service
+    .post(body)
+    .then(response => response.data)
+    .catch(errHandler)
+  },  
+  deleteVisit(visitId){
+    return service
+    .post(`/visits/${visitId}`)
+    .then(response => response.data)
+    .catch(errHandler)
+  },  
+
 
   addPicture(file) {
     const formData = new FormData()

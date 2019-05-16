@@ -1,9 +1,12 @@
+$primary: #dd391c;
+
+
+
+
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
-
-
+@import '../node_modules/mapbox-gl/src/css/mapbox-gl.css';
 // --------------------
 // Definition of variables
-$primary: #ff7332;
 
 // ----------------------------------------
 // To install Boostrap:
@@ -100,4 +103,16 @@ body {
     font-size: 1.2em;
     color: $primary;
   }
+}
+.navbar {
+  background-color: $primary
+}
+.List {
+  display:flex;
+  justify-content: center;
+}
+.mapbox {
+  display:flex;
+  min-width: 100%;
+  text-align: left;
 }
